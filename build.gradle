@@ -21,6 +21,11 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
+run {
+    /* Need to split the space-delimited value in the exec.args */
+    args System.getProperty('exec.args', '').split()
+}
+
 task copyEmbedded {
     outputs.file(new File("$buildDir/fb"))
     doLast {
