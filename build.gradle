@@ -1,0 +1,36 @@
+group 'nl.lawinegevaar.jaybird'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'application'
+
+sourceCompatibility = 1.8
+
+mainClassName = 'nl.lawinegevaar.jaybird.embedded.Main'
+applicationDefaultJvmArgs = ["-Dorg.firebirdsql.jdbc.forceConsoleLogger=true"]
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.firebirdsql.jdbc', name: 'jaybird-jdk18', version: '3.0.2'
+    compile group: 'net.java.dev.jna', name: 'jna', version: '4.2.2'
+    compile group: 'commons-cli', name: 'commons-cli', version: '1.4'
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+task copyEmbedded {
+    outputs.file(new File("$buildDir/fb"))
+    doLast {
+        copy {
+            from "fb"
+            into "$buildDir/fb"
+        }
+    }
+}
+
+applicationDistribution.from(copyEmbedded) {
+    into "fb"
+}
