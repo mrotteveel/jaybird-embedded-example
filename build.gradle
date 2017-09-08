@@ -15,7 +15,7 @@ repositories {
 
 dependencies {
     compile group: 'org.firebirdsql.jdbc', name: 'jaybird-jdk18', version: '3.0.2'
-    compile group: 'net.java.dev.jna', name: 'jna', version: '4.2.2'
+    compile group: 'net.java.dev.jna', name: 'jna', version: '4.4.0'
     compile group: 'commons-cli', name: 'commons-cli', version: '1.4'
 
     testCompile group: 'junit', name: 'junit', version: '4.12'
